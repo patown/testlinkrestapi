@@ -51,6 +51,8 @@ public class RestClient {
 	private String username;
 	private String password;
 	private HttpClient httpClient;
+	private HttpResponse response;
+	
 	public RestClient(String username,String password){
 		this.username=username;
 		this.password=password;
@@ -91,23 +93,23 @@ public class RestClient {
     	 return json;
     }
     
-    public JSON post(String url,String string){
+    public String post(String url,String string){
 
         HttpPost post = new HttpPost(url);
         StringEntity entity;
-        JSON json=null;
+        String result=null;
         try {
 		entity = new StringEntity(string);
         post.setEntity(entity);
 
        
-			json = request(auth(post, username, password));
+			result = doRequest(auth(post, username, password));
 		} catch (RestException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
        
-        return json;
+        return result;
 }
     
 //    public HttpResponse post(String url,StringEntity entity){
@@ -169,6 +171,47 @@ public class RestClient {
             throw new RestException(sl.getReasonPhrase(), sl.getStatusCode(), result.toString());
 
         return result.length() > 0 ? JSONSerializer.toJSON(result.toString()): null;
+    }
+    
+    private String doRequest(HttpUriRequest req) throws RestException, IOException {
+        req.addHeader("Accept", "application/json");
+        HttpResponse resp = httpClient.execute(req);
+        HttpEntity ent = resp.getEntity();
+        StringBuilder result = new StringBuilder();
+
+        if (ent != null) {
+            String encoding = null;
+            if (ent.getContentEncoding() != null) {
+            	encoding = ent.getContentEncoding().getValue();
+            }
+            
+            if (encoding == null) {
+    	        Header contentTypeHeader = resp.getFirstHeader("Content-Type");
+    	        HeaderElement[] contentTypeElements = contentTypeHeader.getElements();
+    	        for (HeaderElement he : contentTypeElements) {
+    	        	NameValuePair nvp = he.getParameterByName("charset");
+    	        	if (nvp != null) {
+    	        		encoding = nvp.getValue();
+    	        	}
+    	        }
+            }
+            
+            InputStreamReader isr =  encoding != null ?
+                new InputStreamReader(ent.getContent(), encoding) :
+                new InputStreamReader(ent.getContent());
+            BufferedReader br = new BufferedReader(isr);
+            String line = "";
+
+            while ((line = br.readLine()) != null)
+                result.append(line);
+        }
+
+        StatusLine sl = resp.getStatusLine();
+
+        if (sl.getStatusCode() >= 300)
+            throw new RestException(sl.getReasonPhrase(), sl.getStatusCode(), result.toString());
+
+        return result.length() > 0 ? result.toString(): null;
     }
     
     private HttpUriRequest auth(HttpUriRequest request,String username,String password){
