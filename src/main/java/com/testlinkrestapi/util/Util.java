@@ -34,6 +34,7 @@ import org.apache.commons.lang.StringUtils;
 
 import com.testlinkrestapi.model.TestPlanBean;
 import com.testlinkrestapi.model.constants.TestLinkParams;
+import com.testlinkrestapi.restclient.Response;
 
 
 
@@ -62,7 +63,7 @@ public final class Util {
      * @param TestPlanBean
      * @return Json String of Test Plan.
      */
-    public static final String getTestPlanJSON(TestPlanBean plan) {
+    public static final String getJSONTestPlan(TestPlanBean plan) {
  		JSONObject jo = new JSONObject();
  		jo.put(TestLinkParams.ISACTIVE, plan.getIsActive()==true?1:0);
  		jo.put(TestLinkParams.ISPUBLIC, plan.getIsPublic()==true?1:0);
@@ -71,6 +72,41 @@ public final class Util {
  	  	jo.put(TestLinkParams.NOTES, plan.getNotes());
  	  	return jo.toString();
     }
+    /**
+     * @param TestPlanBean
+     * @return Json String of Test Plan to be edited.
+     */
+    public static final String getJSONTestPlanEdit(TestPlanBean plan) {
+ 		JSONObject jo = new JSONObject();
+ 		if(null !=plan.getIsActive()){
+ 		jo.put(TestLinkParams.ISACTIVE, plan.getIsActive()==true?1:0);
+ 		}
+ 		if(null !=plan.getIsPublic()){
+ 			jo.put(TestLinkParams.ISPUBLIC, plan.getIsPublic()==true?1:0);
+ 		}
+ 		if(null !=plan.getName()){
+ 	 	  	jo.put(TestLinkParams.NAME,plan.getName());
+ 		}
+ 		if(null !=plan.getTestprojectID()){
+ 	 	  	jo.put(TestLinkParams.TEST_PROJECT_ID, plan.getTestprojectID());
+ 		}
+ 		if(null !=plan.getNotes()){
+ 	 	  	jo.put(TestLinkParams.NOTES, plan.getNotes());
+ 		}
+ 		//System.out.println(jo.toString());
+  	  	return jo.toString();
+    }
+    
+    public static JSONObject decode2JSON(String jsonString){
+    	//{"status":"ok","message":"ok","id":18}
+    	JSONObject jsonObj = new JSONObject();
+    	if (jsonString !=null){
+    		jsonObj =JSONObject.fromObject(jsonString);
+        //.getJSONArray("item").toString());
+    	}	
+    	return jsonObj;
+    }
+    
     
  
     

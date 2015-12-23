@@ -24,25 +24,31 @@
 package com.testlinkrestapi.model.constants;
 
 /**
+ * 
+ * <p>
+ * This enum contains a list of the response parameters  from TestLink.
+ * </p>
+ * 
+ * 
+/**
  * @author Antony Chen
  * @since 1.9.14
  */
-public enum TestLinkRestApis {
-
-    TEST_PLANS("testplans"), 
-    TEST_PROJECTS("testprojects"),
-    WHO("who"),
-    WHOAMI("whoAmI")
+public enum TestLinkResponse {
+    ID("id"), 
+    MESSAGE("message"),
+    OK("ok"),
+    STATUS("status"),
     ;
-
+    
     private String value;
 
-    TestLinkRestApis(String value) {
-		this.value = value;
-	}
+    TestLinkResponse(String value) {
+	this.value = value;
+    }
 
-	public String toString() {
-		return this.value;
-	}
+    public String toString() {
+	return this.value;
+    }
 
 }
