@@ -82,15 +82,21 @@ public class RestClient {
     }
     
     public JSON request(String url){
-    	JSON json=null;
+    	String result =get(url);
+    	return null!=result ? JSONSerializer.toJSON(result): null;
+
+    }
+    
+    public String get(String url){
+    	String result=null;
     	 HttpGet get = new HttpGet(url);
     	 try {
-		json =request(auth(get, username, password));
+		result =request(auth(get, username, password));
 		} catch (RestException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	 return json;
+    	 return result;
     }
     
     public String post(String url,String string){
@@ -128,11 +134,11 @@ public class RestClient {
 //            return response;
 //    }
     
-    private JSON request(HttpUriRequest request,String username, String password) throws RestException, IOException{
+    private String request(HttpUriRequest request,String username, String password) throws RestException, IOException{
     	return request(auth(request, username, password));
     }
     
-    private JSON request(HttpUriRequest req) throws RestException, IOException {
+    private String request(HttpUriRequest req) throws RestException, IOException {
         req.addHeader("Accept", "application/json");
         HttpResponse resp = httpClient.execute(req);
         HttpEntity ent = resp.getEntity();
@@ -169,8 +175,9 @@ public class RestClient {
 
         if (sl.getStatusCode() >= 300)
             throw new RestException(sl.getReasonPhrase(), sl.getStatusCode(), result.toString());
-
-        return result.length() > 0 ? JSONSerializer.toJSON(result.toString()): null;
+        return result.length() > 0 ? result.toString(): null;
+        
+        //return result.length() > 0 ? JSONSerializer.toJSON(result.toString()): null;
     }
     
     private String doRequest(HttpUriRequest req) throws RestException, IOException {
