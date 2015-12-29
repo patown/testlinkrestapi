@@ -1,4 +1,4 @@
-package testplan;
+package restapi.testplan;
 
 
 import org.junit.Before;

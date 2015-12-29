@@ -1,5 +1,7 @@
-package testplan;
+package restapi.testplan;
 
+
+import junit.framework.Assert;
 
 import org.junit.Before;
 import org.junit.Ignore;
@@ -10,7 +12,7 @@ import com.testlinkrestapi.model.TestPlanBean;
 import com.testlinkrestapi.restclient.RestClient;
 import com.testlinkrestapi.service.TestPlanService;
 
-public class UpdateTestPlans {
+public class UpdateTestPlan {
     static String username = "admin";
     static String password = "admin";
     static String baseURL = "http://localhost/testlink1914";
@@ -21,58 +23,42 @@ public class UpdateTestPlans {
     
     TestPlanBean tp= new TestPlanBean();
   	TestPlanService	tlService = new TestPlanService(restpath, devKey);
-    @Before
-    public void setTestPlanBean(){
-    	tp.setIsActive(true);
-	  	tp.setIsPublic(true);
-	  	tp.setName("tp00088");
-	  	tp.setTestrojectID(1).setNotes("notes");	
-    }
-    @Ignore
-	@Test
-	public void TestCreateTestPlan(){
-     	tlService.createTestPlan(tp);
-	}
+
 	
 	@Test
 	public void TestTestPlanChangeNotes(){    	
 	    TestPlanBean tp= new TestPlanBean();
      	tp.setId(18).setNotes("nnnnn");//.setIsPublic(false);
-     	tlService.updateTestPlan(tp);
+    	 TestPlanBean tp2 =tlService.updateTestPlan(tp);
+    	Assert.assertEquals(tp.getId(), tp2.getId());
 	}
 	@Test
 	public void TestTestPlanInPublic(){    	
 	    TestPlanBean tp= new TestPlanBean();
      	tp.setId(18).setIsPublic(false);
-     	tlService.updateTestPlan(tp);
+    	 TestPlanBean tp2 =tlService.updateTestPlan(tp);
+    	Assert.assertEquals(tp.getId(), tp2.getId());
 	}
 	@Test
 	public void TestTestPlanInActive(){    	
 	    TestPlanBean tp= new TestPlanBean();
      	tp.setId(18).setIsActive(false);
-     	tlService.updateTestPlan(tp);
+    	 TestPlanBean tp2 =tlService.updateTestPlan(tp);
+    	Assert.assertEquals(tp.getId(), tp2.getId());
 	}
 	@Test
 	public void TestTestPlanChangeName(){    	
 	    TestPlanBean tp= new TestPlanBean();
      	tp.setId(18).setName("nameChanged");//.setTestrojectID(1);
-     	tlService.updateTestPlan(tp);
+    	 TestPlanBean tp2 =tlService.updateTestPlan(tp);
+    	Assert.assertEquals(tp.getId(), tp2.getId());
 	}
+	@Ignore
 	@Test
 	public void TestTestPlan(){    	
 	    TestPlanBean tp= new TestPlanBean();
      	tp.setId(18).setIsActive(true).setIsPublic(true);
-     	tlService.updateTestPlan(tp);
-	}
-	@Ignore
-	@Test
-	public void TestTestPlanGetList(){    	
-	    int projectID=1;
-     	tlService.getProjectTestPlans(projectID);
-	}
-	@Test
-	public void TestTestPlanGet(){    	
-	    int testplanID=18;
-     	tlService.getTestPlan(testplanID);
+     	 TestPlanBean tp2 =tlService.updateTestPlan(tp);
+     	Assert.assertEquals(tp.getId(), tp2.getId());
 	}
 }
