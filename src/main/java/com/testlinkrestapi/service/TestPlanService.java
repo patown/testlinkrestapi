@@ -9,7 +9,7 @@ import com.testlinkrestapi.model.TestPlanBean;
 import com.testlinkrestapi.model.constants.TestLinkResponse;
 import com.testlinkrestapi.model.constants.TestLinkRestApis;
 import com.testlinkrestapi.restclient.Response;
-import com.testlinkrestapi.util.Util;
+import com.testlinkrestapi.util.DataUtils;
 
 import net.sf.json.JSON;
 
@@ -23,11 +23,11 @@ public class TestPlanService extends BaseService {
 	public JSON createTestPlan(String url,String string){
 	String result=getRestClient().post(url, string);
 	
-	return Util.getJSON(result);
+	return DataUtils.getJSON(result);
     }
 	
     public TestPlanBean createTestPlan(TestPlanBean testplan){
-    	String string =Util.getJSONTestPlan(testplan);
+    	String string =DataUtils.getJSONTestPlan(testplan);
     	String url=getRestBaseUrl()+TestLinkRestApis.TEST_PLANS;
 		String result=getRestClient().post(url, string);
 	  	//TODO:covert result to testplan object
@@ -37,7 +37,7 @@ public class TestPlanService extends BaseService {
     public TestPlanBean updateTestPlan(TestPlanBean testplan){
     	Integer id =testplan.getId() ;
     	if (null !=id && 0!=id){
-    	String string =Util.getJSONTestPlanEdit(testplan);
+    	String string =DataUtils.getJSONTestPlanEdit(testplan);
     	String url=getRestBaseUrl()+TestLinkRestApis.TEST_PLANS+"/"+id;
 		String result=getRestClient().post(url, string);
 	  	//TODO:covert result to testplan object

@@ -10,7 +10,7 @@ import com.testlinkrestapi.model.constants.TestLinkParams;
 import com.testlinkrestapi.model.constants.TestLinkResponse;
 import com.testlinkrestapi.model.constants.TestLinkRestApis;
 import com.testlinkrestapi.restclient.Response;
-import com.testlinkrestapi.util.Util;
+import com.testlinkrestapi.util.DataUtils;
 
 import net.sf.json.JSON;
 

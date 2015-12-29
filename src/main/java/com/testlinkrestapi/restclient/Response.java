@@ -2,7 +2,7 @@ package com.testlinkrestapi.restclient;
 
 
 import com.testlinkrestapi.model.constants.TestLinkResponse;
-import com.testlinkrestapi.util.Util;
+import com.testlinkrestapi.util.DataUtils;
 
 import net.sf.json.JSONObject;
 
@@ -44,7 +44,7 @@ private JSONObject jsonObj;//=new JSONObject();
 	
 	
 	private void processResponse(){
-		jsonObj =Util.decode2JSON(response);	
+		jsonObj =DataUtils.decode2JSON(response);	
 		if(null!=jsonObj){
 		setStatus(jsonObj.getString(TestLinkResponse.STATUS.toString()));
 		setMessage(jsonObj.getString(TestLinkResponse.MESSAGE.toString()));

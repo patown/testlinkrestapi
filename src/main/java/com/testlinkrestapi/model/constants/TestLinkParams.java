@@ -23,6 +23,11 @@
  */
 package com.testlinkrestapi.model.constants;
 
+import java.awt.Color;
+
+import com.sun.org.apache.xml.internal.utils.PrefixResolver;
+import com.testlinkrestapi.model.Options;
+
 /**
  * 
  * <p>
@@ -35,11 +40,13 @@ package com.testlinkrestapi.model.constants;
  * @since 1.9.14
  */
 public enum TestLinkParams {
-    
+    COLOR("color"),
     ISACTIVE("active"), 
     ISPUBLIC("is_public"),
     NAME("name"), 
     NOTES("notes"), 
+    OPTIONS("options"),
+    PREFIX("prefix"),
     TEST_PROJECT_ID("testProjectID"), 
     ;
     

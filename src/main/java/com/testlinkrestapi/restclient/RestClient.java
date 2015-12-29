@@ -212,7 +212,7 @@ public class RestClient {
             while ((line = br.readLine()) != null)
                 result.append(line);
         }
-
+      //  System.out.println(result.toString());
         StatusLine sl = resp.getStatusLine();
 
         if (sl.getStatusCode() >= 300)

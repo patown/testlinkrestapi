@@ -4,12 +4,12 @@ package com.testlinkrestapi;
 import net.sf.json.JSON;
 import net.sf.json.JSONObject;
 
-import com.testlinkrestapi.model.Response;
 import com.testlinkrestapi.model.TestPlanBean;
 import com.testlinkrestapi.model.constants.TestLinkRestApis;
+import com.testlinkrestapi.restclient.Response;
 import com.testlinkrestapi.restclient.RestClient;
 import com.testlinkrestapi.service.TestPlanService;
-import com.testlinkrestapi.util.Util;
+import com.testlinkrestapi.util.DataUtils;
 
 public class TLRestClient {
 
@@ -145,14 +145,14 @@ public class TLRestClient {
     }
     
     public TestPlanBean CreateTestPlan(TestPlanBean testplan){
-    	String string =Util.getTestPlanJSON(testplan);
+    	String string =DataUtils.getJSONTestPlan(testplan);
 		String result=restClient.post(TESTPLAN, string);
 	  	System.out.println(result);//TODO:covert result to testplan
 	  	return testplan;
     }
     
     public TestPlanBean CreateTestPlanByService(TestPlanBean testplan){
-    	tpService.CreateTestPlan(testplan);
+    	tpService.createTestPlan(testplan);
     	return testplan;
     }
     
@@ -180,7 +180,7 @@ public class TLRestClient {
         
         
 	  	
-	  	tpService.CreateTestPlan(tp);
+	  	tpService.createTestPlan(tp);
 	  	
         
         //JSONObject.toBean(JSONObject.fromObject(json),Response.class
