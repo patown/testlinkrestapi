@@ -31,6 +31,7 @@ public enum TestLinkRestApis {
 
     TEST_PLANS("testplans"), 
     TEST_PROJECTS("testprojects"),
+    TEST_SUITES("testsuites"),
     WHO("who"),
     WHOAMI("whoAmI")
     ;

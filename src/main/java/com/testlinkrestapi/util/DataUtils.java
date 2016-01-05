@@ -36,6 +36,7 @@ import org.apache.commons.lang.StringUtils;
 import com.testlinkrestapi.model.Options;
 import com.testlinkrestapi.model.TestPlanBean;
 import com.testlinkrestapi.model.TestProjectBean;
+import com.testlinkrestapi.model.TestSuiteBean;
 import com.testlinkrestapi.model.constants.TestLinkParams;
 import com.testlinkrestapi.restclient.Response;
 
@@ -75,7 +76,13 @@ public final class DataUtils {
  	  	jo.put(TestLinkParams.NOTES, plan.getNotes());
  	  	return jo.toString();
     }
-    
+    /**
+     * @param TestSuiteBean
+     * @return Json String of Test Suite to be created/updated.
+     */
+    public static final String getJSONTestSuite(TestSuiteBean testsuite) {
+    	return JSONObject.fromObject(testsuite).toString();
+    }    
     /**
      * @param TestProjectBean
      * @return Json String of Test Project to be edited.

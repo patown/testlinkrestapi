@@ -46,6 +46,8 @@ public enum TestLinkParams {
     NAME("name"), 
     NOTES("notes"), 
     OPTIONS("options"),
+    ORDER("order"),
+    PARENTID("parentID"),
     PREFIX("prefix"),
     TEST_PROJECT_ID("testProjectID"), 
     ;
