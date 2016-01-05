@@ -2,7 +2,7 @@ package com.testlinkrestapi.service;
 
 import java.util.ArrayList;
 
-import org.junit.Ignore;
+
 
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 import com.testlinkrestapi.model.TestPlanBean;
