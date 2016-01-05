@@ -37,8 +37,8 @@ public class TestProjectBean implements Serializable {
     private String name;
     private String color;
     private String prefix;
-    private Boolean isActive;
-    private Boolean isPublic;
+    private Integer active;
+    private Integer is_public;
 	private String notes;
     public String getNotes() {
 		return notes;
@@ -64,12 +64,12 @@ public class TestProjectBean implements Serializable {
 		return prefix;
 	}
 
-	public Boolean getIsActive() {
-		return isActive;
+	public Integer getActive() {
+		return active;
 	}
 
-	public Boolean getIsPublic() {
-		return isPublic;
+	public Integer getIs_public() {
+		return is_public;
 	}
 
 	public Options getOptions() {
@@ -96,13 +96,13 @@ public class TestProjectBean implements Serializable {
 		return this;
 	}
 
-	public TestProjectBean setIsActive(Boolean isActive) {
-		this.isActive = isActive;
+	public TestProjectBean setActive(Integer isActive) {
+		this.active = isActive;
 		return this;
 	}
 
-	public TestProjectBean setIsPublic(Boolean isPublic) {
-		this.isPublic = isPublic;
+	public TestProjectBean setIs_public(Integer isPublic) {
+		this.is_public = isPublic;
 		return this;
 	}
 	public TestProjectBean setNotes(String notes) {

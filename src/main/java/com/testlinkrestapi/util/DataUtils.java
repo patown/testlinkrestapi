@@ -81,30 +81,31 @@ public final class DataUtils {
      * @return Json String of Test Project to be edited.
      */
     public static final String getJSONTestProject(TestProjectBean project) {
- 		JSONObject jo = new JSONObject();
- 		if(null !=project.getIsActive()){
- 		jo.put(TestLinkParams.ISACTIVE, setBoolean(project.getIsActive()));
- 		}
- 		if(null !=project.getIsPublic()){
- 			jo.put(TestLinkParams.ISPUBLIC, setBoolean(project.getIsPublic()));
- 		}
- 		if(null !=project.getName()){
- 	 	  	jo.put(TestLinkParams.NAME,project.getName());
- 		}
- 		if(null !=project.getPrefix()){
- 	 	  	jo.put(TestLinkParams.PREFIX, project.getPrefix());
- 		}
- 		if(null !=project.getColor()){
- 	 	  	jo.put(TestLinkParams.COLOR, project.getColor());
- 		}
- 		if(null !=project.getNotes()){
- 	 	  	jo.put(TestLinkParams.NOTES, project.getNotes());
- 		}
- 		if(null !=project.getOptions()){
- 	 	  	jo.put(TestLinkParams.OPTIONS, project.getOptions());
- 		}
- 		//System.out.println(jo.toString());
-  	  	return jo.toString();
+    	return JSONObject.fromObject(project).toString();
+// 		JSONObject jo = new JSONObject();
+// 		if(null !=project.getActive()){
+// 		jo.put(TestLinkParams.ISACTIVE, setBoolean(project.getActive()));
+// 		}
+// 		if(null !=project.getIsPublic()){
+// 			jo.put(TestLinkParams.ISPUBLIC, setBoolean(project.getIsPublic()));
+// 		}
+// 		if(null !=project.getName()){
+// 	 	  	jo.put(TestLinkParams.NAME,project.getName());
+// 		}
+// 		if(null !=project.getPrefix()){
+// 	 	  	jo.put(TestLinkParams.PREFIX, project.getPrefix());
+// 		}
+// 		if(null !=project.getColor()){
+// 	 	  	jo.put(TestLinkParams.COLOR, project.getColor());
+// 		}
+// 		if(null !=project.getNotes()){
+// 	 	  	jo.put(TestLinkParams.NOTES, project.getNotes());
+// 		}
+// 		if(null !=project.getOptions()){
+// 	 	  	jo.put(TestLinkParams.OPTIONS, project.getOptions());
+// 		}
+// 		//System.out.println(jo.toString());
+//  	  	return jo.toString();
     }
     
     /**
@@ -112,7 +113,8 @@ public final class DataUtils {
      * @return Json String of Test Project to be edited.
      */
     public static final String getJSONTestProjectOptions(Options options) {
- 		JSONObject jo = new JSONObject();
+    	return JSONObject.fromObject(options).toString();
+// 		JSONObject jo = new JSONObject();
 // 		if(null !=project.getIsActive()){
 // 		jo.put(TestLinkParams.ISACTIVE, setBoolean(options.isRequirementsEnabled()));
 // 		}
@@ -132,7 +134,7 @@ public final class DataUtils {
 // 	 	  	jo.put(TestLinkParams.OPTIONS, project.getOptions());
 // 		}
 // 		//System.out.println(jo.toString());
-  	  	return jo.toString();
+//  	  	return jo.toString();
     }
     
     /**

@@ -27,14 +27,23 @@ public class TestProjectService extends BaseService {
 //	return DataUtils.getJSON(result);
 //    }
 	
-    public TestProjectBean createTestProject(TestProjectBean project){
+    public String createTestProject(TestProjectBean project){
     	String string =DataUtils.getJSONTestProject(project);
     	System.out.println(string);
     	String url=getRestBaseUrl()+TestLinkRestApis.TEST_PROJECTS;
 		String result=getRestClient().post(url, string);
 	  	//TODO:covert result to testplan object
-		System.out.println(result);
-	  	return project;
+	//	System.out.println(result);
+	  	return result;
+    }
+    
+    public String createTestProject(String string){
+    	System.out.println(string);
+    	String url=getRestBaseUrl()+TestLinkRestApis.TEST_PROJECTS;
+		String result=getRestClient().post(url, string);
+	  	//TODO:covert result to testplan object
+	//	System.out.println(result);
+	  	return result;
     }
     
 //    public TestPlanBean updateTestPlan(TestPlanBean testplan){

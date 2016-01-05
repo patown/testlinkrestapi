@@ -16,7 +16,7 @@ import com.testlinkrestapi.restclient.RestClient;
 import com.testlinkrestapi.service.TestPlanService;
 import com.testlinkrestapi.service.TestProjectService;
 
-public class CreateTestProject {
+public class GetTestProject {
 
     static String baseURL = "http://localhost/testlink1914";
 	private static String restpath=baseURL+"/lib/api/rest/v1/";
@@ -27,23 +27,15 @@ public class CreateTestProject {
     TestProjectBean project= new TestProjectBean();
     Options options = new Options();
   	TestProjectService	tpService = new TestProjectService(restpath, devKey);
-    @Before
-    public void setBeans(){
-    	options.setAutomationEnabled(1).setInventoryEnabled(1).setTestPriorityEnabled(1).setTestPriorityEnabled(1);
-	  	project.setName("tp001").setPrefix("001").setColor("iamcolor").setNotes("iamnote");
-    	project.setActive(0).setIs_public(1).setOptions(options);
-    }
-   // @Ignore
-	@Test
-	public void TestCreateTestProject(){
-    	String result =tpService.createTestProject(project);
-    	Response response= new Response(result);
-    	System.out.println(result);
-    	Assert.assertTrue(response.IsResponseOK());
-    	result =tpService.createTestProject(project);
-    	System.out.println(result);
-    	response= new Response(result);
-    	Assert.assertEquals("ko", response.getStatus());
-	}
 
+	@Test
+	public void TestGetTestProject(){
+    	tpService.getTestProject(1);
+	}
+    @Ignore	
+	@Test
+	public void TestGetTestProjects(){
+    	tpService.getTestProjects();
+	}
+	
 }
