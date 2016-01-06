@@ -19,6 +19,11 @@ public abstract class BaseService {
 	private String restBaseUrl;
 	
 	/**
+	 * TestLink REST API  url.
+	 */
+	protected String restUrl;
+	
+	/**
 	 * @param restClient
 	 *            XML-RPC Client.
 	 * @param devKey
@@ -28,6 +33,7 @@ public abstract class BaseService {
 		this.devKey = devKey;
 		this.restBaseUrl=restBaseUrl;
 		this.restClient = new RestClient(devKey,devKey);
+		this.restUrl=setRestUrl();
 	}
 
 	protected RestClient getRestClient(){
@@ -41,6 +47,14 @@ public abstract class BaseService {
 		this.restClient=new RestClient(devKey, devKey);
 	}
 	
-	public abstract String getURL();
+	 protected  abstract  String setRestUrl();
+	
+	protected String getRestUrl(){
+		return restUrl;
+	}
+	
+	protected String doPost(String string){
+		return getRestClient().post(getRestUrl(), string);
+	}
 	
 }
