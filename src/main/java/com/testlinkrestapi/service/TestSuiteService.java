@@ -3,11 +3,6 @@ package com.testlinkrestapi.service;
 import java.util.ArrayList;
 
 
-
-
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
-import com.testlinkrestapi.model.TestPlanBean;
-import com.testlinkrestapi.model.TestSuiteBean;
 import com.testlinkrestapi.model.constants.TestLinkResponse;
 import com.testlinkrestapi.model.constants.TestLinkRestApis;
 import com.testlinkrestapi.restclient.Response;
@@ -24,18 +19,22 @@ public class TestSuiteService extends BaseService {
 		super(restBaseUrl,devKey);
 		// TODO Auto-generated constructor stub
 	}
-	public String  createTestSuite(String url,String string){
+	public String  createTestCase(String url,String string){
 	String result=getRestClient().post(url, string);
 	return result;
     }
 	
-    public String createTestSuite(TestSuiteBean testsuite){
-    	String string =DataUtils.getJSONTestSuite(testsuite);
-    	String url=getRestBaseUrl()+TestLinkRestApis.TEST_SUITES;
-    	System.out.println(string);
-		String result=createTestSuite(url,string);
-	  	return result;
-    }
+	public String getURL(){
+		return getRestBaseUrl()+TestLinkRestApis.TEST_SUITES;
+	}
+	
+//    public String createTestSuite(TestSuiteBean testsuite){
+//    	String string =DataUtils.getJSONTestSuite(testsuite);
+//    	String url=getRestBaseUrl()+TestLinkRestApis.TEST_SUITES;
+//    	System.out.println(string);
+//		String result=createTestSuite(url,string);
+//	  	return result;
+//    }
     
 //    public TestPlanBean updateTestPlan(TestPlanBean testplan){
 //    	Integer id =testplan.getId() ;

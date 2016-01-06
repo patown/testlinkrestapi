@@ -2,7 +2,7 @@ package com.testlinkrestapi.service;
 
 import com.testlinkrestapi.restclient.RestClient;
 
-public class BaseService {
+public abstract class BaseService {
 	/**
 	 * REST client.
 	 */
@@ -40,5 +40,7 @@ public class BaseService {
 	public void resetRestClient(String devkey){
 		this.restClient=new RestClient(devKey, devKey);
 	}
+	
+	public abstract String getURL();
 	
 }
