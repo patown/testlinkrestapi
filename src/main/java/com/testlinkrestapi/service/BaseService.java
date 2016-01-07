@@ -54,7 +54,13 @@ public abstract class BaseService {
 	}
 	
 	protected String doPost(String string){
-		return getRestClient().post(getRestUrl(), string);
+		return doPost(getRestUrl(), string);
+	}
+	protected String doPost(String url,String string){
+		return getRestClient().post(url, string);
 	}
 	
+	protected String doGet(String url){
+		return getRestClient().get(url);
+	}
 }

@@ -1,18 +1,8 @@
 package com.testlinkrestapi.service;
 
-import java.util.ArrayList;
 
-
-
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
-import com.testlinkrestapi.model.TestPlanBean;
-import com.testlinkrestapi.model.constants.TestLinkParams;
-import com.testlinkrestapi.model.constants.TestLinkResponse;
 import com.testlinkrestapi.model.constants.TestLinkRestApis;
-import com.testlinkrestapi.restclient.Response;
-import com.testlinkrestapi.util.DataUtils;
 
-import net.sf.json.JSON;
 
 
 public class MiscService extends BaseService {
@@ -30,5 +20,10 @@ public class MiscService extends BaseService {
 	String result=getRestClient().get(getRestBaseUrl()+TestLinkRestApis.WHOAMI);
 	return result;
     }
+	@Override
+	protected String setRestUrl() {
+		// TODO Auto-generated method stub
+		return getRestBaseUrl();
+	}
 	
 }

@@ -34,6 +34,7 @@ import net.sf.json.JSONSerializer;
 import org.apache.commons.lang.StringUtils;
 
 import com.testlinkrestapi.model.Options;
+import com.testlinkrestapi.model.TestCaseBean;
 import com.testlinkrestapi.model.TestPlanBean;
 import com.testlinkrestapi.model.TestProjectBean;
 import com.testlinkrestapi.model.TestSuiteBean;
@@ -62,7 +63,14 @@ public final class DataUtils {
     }
 
 
-
+    /**
+     * @param TestCaseBean
+     * @return Json String of Test Case to be created.
+     */
+    public static final String getJSONTestCase(TestCaseBean testcase) {
+    	return JSONObject.fromObject(testcase).toString();
+    }    
+    
     /**
      * @param TestPlanBean
      * @return Json String of Test Plan.

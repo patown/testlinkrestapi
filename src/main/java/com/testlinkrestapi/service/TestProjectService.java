@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 
 
+
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 import com.testlinkrestapi.model.TestPlanBean;
 import com.testlinkrestapi.model.TestProjectBean;
@@ -30,7 +31,7 @@ public class TestProjectService extends BaseService {
     public String createTestProject(TestProjectBean project){
     	String string =DataUtils.getJSONTestProject(project);
     	System.out.println(string);
-    	String url=getRestBaseUrl()+TestLinkRestApis.TEST_PROJECTS;
+    	String url=getRestUrl();
 		String result=getRestClient().post(url, string);
 	  	//TODO:covert result to testplan object
 	//	System.out.println(result);
@@ -39,7 +40,7 @@ public class TestProjectService extends BaseService {
     
     public String createTestProject(String string){
     	System.out.println(string);
-    	String url=getRestBaseUrl()+TestLinkRestApis.TEST_PROJECTS;
+    	String url=getRestUrl();
 		String result=getRestClient().post(url, string);
 	  	//TODO:covert result to testplan object
 	//	System.out.println(result);
@@ -65,8 +66,7 @@ public class TestProjectService extends BaseService {
 //    
     public ArrayList<TestProjectBean> getTestProjects(){
     	//testprojects/:id/testplans
-    	String url=getRestBaseUrl()+TestLinkRestApis.TEST_PROJECTS;
-    	System.out.println(url);
+    	String url=getRestUrl();
     	String result=getRestClient().get(url);
     	System.out.println(result);
     	//TODO:parse result to arraylist
@@ -81,4 +81,12 @@ public class TestProjectService extends BaseService {
     	//TODO:parse result to arraylist
     	return null;
     }
+/*
+ * @return testprojects
+ */
+	@Override
+	protected String setRestUrl() {
+		// TODO Auto-generated method stub
+		return getRestBaseUrl()+TestLinkRestApis.TEST_PROJECTS;
+	}
 }

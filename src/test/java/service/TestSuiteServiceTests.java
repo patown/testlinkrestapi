@@ -51,7 +51,7 @@ public class TestSuiteServiceTests {
  	  	jo.put("parentID", 1);
  	  	jo.put("order", 101);
 		System.out.println(jo.toString());
-		String result=suiteService.createTestSuite(testsuitepath, jo.toString());
+		String result=suiteService.createTestSuite(jo.toString());
 		System.out.println(result);
 	}
 	

@@ -1,19 +1,9 @@
 package com.testlinkrestapi.service;
 
-import java.util.ArrayList;
-
-
-
-
 
 import com.testlinkrestapi.model.TestCaseBean;
 import com.testlinkrestapi.model.constants.TestLinkRestApis;
-
-
-
 import com.testlinkrestapi.util.DataUtils;
-
-import net.sf.json.JSON;
 
 
 public class TestCaseService extends BaseService {
