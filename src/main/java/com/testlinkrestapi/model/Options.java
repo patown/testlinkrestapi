@@ -42,33 +42,56 @@ public class Options  implements Serializable {
 	Integer testPriorityEnabled;
 	Integer automationEnabled;
 	Integer inventoryEnabled;
+	/**
+	 * @return the requirementsEnabled
+	 */
 	public Integer getRequirementsEnabled() {
 		return requirementsEnabled;
 	}
+	/**
+	 * @param requirementsEnabled the requirementsEnabled to set
+	 */
+	public void setRequirementsEnabled(Integer requirementsEnabled) {
+		this.requirementsEnabled = requirementsEnabled;
+	}
+	/**
+	 * @return the testPriorityEnabled
+	 */
 	public Integer getTestPriorityEnabled() {
 		return testPriorityEnabled;
 	}
+	/**
+	 * @param testPriorityEnabled the testPriorityEnabled to set
+	 */
+	public void setTestPriorityEnabled(Integer testPriorityEnabled) {
+		this.testPriorityEnabled = testPriorityEnabled;
+	}
+	/**
+	 * @return the automationEnabled
+	 */
 	public Integer getAutomationEnabled() {
 		return automationEnabled;
 	}
+	/**
+	 * @param automationEnabled the automationEnabled to set
+	 */
+	public void setAutomationEnabled(Integer automationEnabled) {
+		this.automationEnabled = automationEnabled;
+	}
+	/**
+	 * @return the inventoryEnabled
+	 */
 	public Integer getInventoryEnabled() {
 		return inventoryEnabled;
 	}
-	public Options setRequirementsEnabled(Integer requirementsEnabled) {
-		this.requirementsEnabled = requirementsEnabled;
-		return this;
-	}
-	public Options setTestPriorityEnabled(Integer testPriorityEnabled) {
-		this.testPriorityEnabled = testPriorityEnabled;
-		return this;
-	}
-	public Options setAutomationEnabled(Integer automationEnabled) {
-		this.automationEnabled = automationEnabled;
-		return this;
-	}
-	public Options setInventoryEnabled(Integer inventoryEnabled) {
+	/**
+	 * @param inventoryEnabled the inventoryEnabled to set
+	 */
+	public void setInventoryEnabled(Integer inventoryEnabled) {
 		this.inventoryEnabled = inventoryEnabled;
-		return this;
 	}
+	
+	
+	
 
 }
