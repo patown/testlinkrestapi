@@ -1,7 +1,13 @@
 package restapi.testproject;
 
 
+
+
+import java.util.ArrayList;
+import java.util.List;
+
 import junit.framework.Assert;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 import org.junit.Before;
@@ -13,6 +19,7 @@ import com.testlinkrestapi.model.Options;
 import com.testlinkrestapi.model.TestPlanBean;
 import com.testlinkrestapi.model.TestProjectBean;
 import com.testlinkrestapi.model.TestProjectRspBean;
+import com.testlinkrestapi.model.TestProjectsRspBean;
 import com.testlinkrestapi.restclient.Response;
 import com.testlinkrestapi.restclient.RestClient;
 import com.testlinkrestapi.service.TestPlanService;
@@ -29,7 +36,8 @@ public class GetTestProject {
     TestProjectBean project= new TestProjectBean();
     Options options = new Options();
   	TestProjectService	tpService = new TestProjectService(restpath, devKey);
-
+  	
+  	@Ignore
 	@Test
 	public void TestGetTestProject(){
     	String res=tpService.getTestProject(1);
@@ -37,10 +45,21 @@ public class GetTestProject {
     	TestProjectRspBean bean =(TestProjectRspBean) JSONObject.toBean(item, TestProjectRspBean.class);
     	System.out.println(JSONObject.fromObject(bean).toString());
 	}
-    @Ignore	
+  	
 	@Test
 	public void TestGetTestProjects(){
-    	tpService.getTestProjects();
+       	String res=tpService.getTestProjects();
+    	System.out.println(res);
+    	JSONArray jsonArray =JSONObject.fromObject(res).getJSONArray("item");
+    	List<TestProjectsRspBean> beanList = new ArrayList<TestProjectsRspBean>();
+    	for(int i=0;i<jsonArray.size();i++){
+    		System.out.println(jsonArray.getString(i));
+    		JSONObject obj=JSONObject.fromObject(jsonArray.getString(i));
+    		TestProjectsRspBean bean =(TestProjectsRspBean) JSONObject.toBean(obj,TestProjectsRspBean.class);
+        	beanList.add(bean);
+    	}
+    	
+    	System.out.println(beanList.get(1).getName());
 	}
 	
 }

@@ -1,92 +1,99 @@
+
+/*
+ * The MIT License
+ *
+ * Copyright (c) <2015> <Antony Chen>
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 package com.testlinkrestapi.service;
 
-import java.util.ArrayList;
 
-
-
-
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
-import com.testlinkrestapi.model.TestPlanBean;
 import com.testlinkrestapi.model.TestProjectBean;
-import com.testlinkrestapi.model.constants.TestLinkResponse;
 import com.testlinkrestapi.model.constants.TestLinkRestApis;
-import com.testlinkrestapi.restclient.Response;
 import com.testlinkrestapi.util.DataUtils;
 
-import net.sf.json.JSON;
 
 
+/**
+ * @author Antony Chen
+ * @since 1.9.14
+ */
 public class TestProjectService extends BaseService {
 	
 	public TestProjectService(String restBaseUrl,String devKey) {
 		super(restBaseUrl,devKey);
 		// TODO Auto-generated constructor stub
 	}
-//	public JSON createTestPlan(String url,String string){
-//	String result=getRestClient().post(url, string);
-//	
-//	return DataUtils.getJSON(result);
-//    }
-	
+
+    /*
+     * @param TestProjectBean 
+     * @return result
+     */
     public String createTestProject(TestProjectBean project){
     	String string =DataUtils.getJSONTestProject(project);
-    	System.out.println(string);
-    	String url=getRestUrl();
-		String result=getRestClient().post(url, string);
-	  	//TODO:covert result to testplan object
-	//	System.out.println(result);
-	  	return result;
+	  	return createTestProject(string);
     }
-    
+    /*
+     * @param testproject String
+     * @return result
+     */
     public String createTestProject(String string){
     	System.out.println(string);
     	String url=getRestUrl();
 		String result=getRestClient().post(url, string);
-	  	//TODO:covert result to testplan object
-	//	System.out.println(result);
 	  	return result;
     }
     
-//    public TestPlanBean updateTestPlan(TestPlanBean testplan){
-//    	Integer id =testplan.getId() ;
-//    	if (null !=id && 0!=id){
-//    	String string =DataUtils.getJSONTestPlanEdit(testplan);
-//    	String url=getRestBaseUrl()+TestLinkRestApis.TEST_PLANS+"/"+id;
-//		String result=getRestClient().post(url, string);
-//	  	//TODO:covert result to testplan object
-//		
-//    	Response response = new Response(result);
-//    	Integer planid = response.getInt(TestLinkResponse.ID.toString());
-////		System.out.println("testplan updated::"+planid);
-////		System.out.println(result);
-//    	testplan.setId(planid);
-//    	}
-//	  	return testplan;
-//    }
-//    
-    public ArrayList<TestProjectBean> getTestProjects(){
-    	//testprojects/:id/testplans
+    /*
+     * @return testprojects
+     */
+    public String getTestProjects(){
     	String url=getRestUrl();
-    	String result=getRestClient().get(url);
-    	System.out.println(result);
+    	String result=doGet(url);
+    	//System.out.println(result);
     	//TODO:parse result to arraylist
-    	return null;
+    	return result;
     }
-    public TestProjectBean getTestProject(int testprojectID){
-    	//testprojects/:id/testplans
-    	String url=getRestBaseUrl()+TestLinkRestApis.TEST_PROJECTS+"/"+testprojectID;
-    	System.out.println(url);
-    	String result=getRestClient().get(url);
-    	System.out.println(result);
-    	//TODO:parse result to arraylist
-    	return null;
+    
+    /*
+     * @param testprojectID
+     * @return testproject
+     */
+    public String getTestProject(int testprojectID){
+    	String url=getRestUrl()+"/"+testprojectID;
+    	String result=doGet(url);
+    	return result;
     }
-/*
- * @return testprojects
- */
+    
+    /*
+     * @param testprojectName
+     * @return testproject
+     */
+    public String getTestProject(String testprojectName ){
+    	String url=getRestUrl()+"/"+testprojectName;
+    	String result=doGet(url);
+    	return result;
+    }
+
 	@Override
 	protected String setRestUrl() {
-		// TODO Auto-generated method stub
 		return getRestBaseUrl()+TestLinkRestApis.TEST_PROJECTS;
 	}
 }

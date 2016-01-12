@@ -21,7 +21,8 @@ public class CreateTestProject {
     static String baseURL = "http://localhost/testlink1914";
 	private static String restpath=baseURL+"/lib/api/rest/v1/";
 
-    private static String devKey="40f388699bf787b88f92030f6caff55f";
+	   // private static String devKey="40f388699bf787b88f92030f6caff55f";
+    private static String devKey="0dcfc5b0ef5e5df6c7fc4fa9a3b9df95";
     
     
     TestProjectBean project= new TestProjectBean();
@@ -29,11 +30,14 @@ public class CreateTestProject {
   	TestProjectService	tpService = new TestProjectService(restpath, devKey);
     @Before
     public void setBeans(){
-    	options.setAutomationEnabled(1).setInventoryEnabled(1).setTestPriorityEnabled(1).setTestPriorityEnabled(1);
-	  	project.setName("tp001").setPrefix("001").setColor("iamcolor").setNotes("iamnote");
+    	options.setAutomationEnabled(1);
+    	options.setInventoryEnabled(1);
+    	options.setTestPriorityEnabled(1);
+    	options.setTestPriorityEnabled(1);
+	  	project.setName("tp220").setPrefix("220").setColor("iamcolor").setNotes("iamnote");
     	project.setActive(0).setIs_public(1).setOptions(options);
     }
-   // @Ignore
+
 	@Test
 	public void TestCreateTestProject(){
     	String result =tpService.createTestProject(project);
