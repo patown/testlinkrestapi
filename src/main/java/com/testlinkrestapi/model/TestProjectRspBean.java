@@ -49,18 +49,7 @@ public class TestProjectRspBean implements Serializable {
 
 	private String prefix;
     private String is_public;
-    /**
-	 * @return the is_public
-	 */
-	public String getIs_public() {
-		return is_public;
-	}
-	/**
-	 * @param is_public the is_public to set
-	 */
-	public void setIs_public(String is_public) {
-		this.is_public = is_public;
-	}
+
 	private String tc_counter;
     private String issue_tracker_enabled;
     private String reqmgr_integration_enabled;
@@ -101,6 +90,19 @@ public class TestProjectRspBean implements Serializable {
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+    /**
+	 * @return the is_public
+	 */
+	public String getIs_public() {
+		return is_public;
+	}
+	/**
+	 * @param is_public the is_public to set
+	 */
+	public void setIs_public(String is_public) {
+		this.is_public = is_public;
 	}
 	/**
 	 * @return the color

@@ -37,7 +37,7 @@ public class GetTestProject {
     Options options = new Options();
   	TestProjectService	tpService = new TestProjectService(restpath, devKey);
   	
-  	@Ignore
+
 	@Test
 	public void TestGetTestProject(){
     	String res=tpService.getTestProject(1);
@@ -45,7 +45,7 @@ public class GetTestProject {
     	TestProjectRspBean bean =(TestProjectRspBean) JSONObject.toBean(item, TestProjectRspBean.class);
     	System.out.println(JSONObject.fromObject(bean).toString());
 	}
-  	
+    	@Ignore	
 	@Test
 	public void TestGetTestProjects(){
        	String res=tpService.getTestProjects();

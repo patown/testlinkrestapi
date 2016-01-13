@@ -96,6 +96,7 @@ public class RestClient {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+    	 System.out.println("url------>"+url+"\nresult--->"+result);
     	 return result;
     }
     

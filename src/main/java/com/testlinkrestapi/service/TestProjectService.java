@@ -25,8 +25,13 @@
 package com.testlinkrestapi.service;
 
 
+import net.sf.json.JSONObject;
+
 import com.testlinkrestapi.model.TestProjectBean;
+import com.testlinkrestapi.model.TestProjectRspBean;
 import com.testlinkrestapi.model.constants.TestLinkRestApis;
+import com.testlinkrestapi.restclient.Response;
+import com.testlinkrestapi.util.BeanUtils;
 import com.testlinkrestapi.util.DataUtils;
 
 
@@ -91,7 +96,31 @@ public class TestProjectService extends BaseService {
     	String result=doGet(url);
     	return result;
     }
+    
+    /*
+     * @param testprojectName
+     * @return TestProjectBean
+     */
+    public TestProjectBean getTestProjectByName(String testprojectName){
+    	String result=getTestProject(testprojectName);
+    	//TODO: using response class
+    	TestProjectRspBean rspBean =DataUtils.getItem2Bean(result,TestProjectRspBean.class);
+    	TestProjectBean bean =BeanUtils.getTestProjectBeanFromTestProjectRspBean(rspBean);
+    	return bean;
+    }
 
+    /*
+     * @param testprojectID
+     * @return TestProjectBean
+     */
+	public TestProjectBean getTestProjectByID(Integer projectID) {
+    	String result=getTestProject(projectID);
+    	//TODO: using response class
+    	TestProjectRspBean rspBean =DataUtils.getItem2Bean(result,TestProjectRspBean.class);
+    	TestProjectBean bean =BeanUtils.getTestProjectBeanFromTestProjectRspBean(rspBean);
+    	return bean;
+	}
+	
 	@Override
 	protected String setRestUrl() {
 		return getRestBaseUrl()+TestLinkRestApis.TEST_PROJECTS;

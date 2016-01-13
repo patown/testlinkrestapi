@@ -37,6 +37,7 @@ import com.testlinkrestapi.model.Options;
 import com.testlinkrestapi.model.TestCaseBean;
 import com.testlinkrestapi.model.TestPlanBean;
 import com.testlinkrestapi.model.TestProjectBean;
+import com.testlinkrestapi.model.TestProjectRspBean;
 import com.testlinkrestapi.model.TestSuiteBean;
 import com.testlinkrestapi.model.constants.TestLinkParams;
 import com.testlinkrestapi.restclient.Response;
@@ -177,12 +178,34 @@ public final class DataUtils {
   	  	return jo.toString();
     }
     
- 
+    /**
+     * @param TestProjectBean
+     * @return Json String of Test Project to be edited.
+     */
+    public static final TestProjectBean getTestProjectBeanFromResponse(String response) {
+    	TestProjectBean tpBean =new TestProjectBean();
+    	JSONObject item=JSONObject.fromObject(response).getJSONObject("item");
+    	TestProjectRspBean rspBean =(TestProjectRspBean) JSONObject.toBean(item, TestProjectRspBean.class);
+    	tpBean.setId(rspBean.getId());
+    	tpBean.setActive(getInt(rspBean.getActive())).setName(rspBean.getName());
+    	tpBean.setPrefix(rspBean.getPrefix());
+    	//TODO:full set.
+    	;
+    	
+    	return tpBean;
+    }
     		
     	public static <T> T retrieveResourceFromResponse(String response, Class<T> clazz) 
     	  throws IOException {
     		return (T) JSONObject.toBean(decode2JSON(response),clazz);
     	}
+    	
+    	public static <T> T getItem2Bean(String response, Class<T> clazz) { 
+    		JSONObject item=JSONObject.fromObject(response).getJSONObject("item");
+    	 	return   (T)JSONObject.toBean(item, clazz);
+      }
+
+    	
     
     public static JSONObject decode2JSON(String jsonString){
     	//{"status":"ok","message":"ok","id":18}
@@ -198,6 +221,9 @@ public final class DataUtils {
     	return bool==true?1:0;
     }
  
+    public static Integer getInt(String string){
+    	return Integer.parseInt(string);
+    }
     private boolean getBoolean(Integer integer){
     	boolean bool ;
     	if ( 1==integer ){
