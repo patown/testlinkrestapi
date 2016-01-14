@@ -1,4 +1,4 @@
-package service;
+package restapi.service.testCaseService;
 
 import net.sf.json.JSONObject;
 

@@ -1,4 +1,4 @@
-package restapi.testplan;
+package restapi.service.testplan;
 
 
 import org.junit.Before;
@@ -9,8 +9,9 @@ import com.testlinkrestapi.TLException;
 import com.testlinkrestapi.model.TestPlanBean;
 import com.testlinkrestapi.restclient.RestClient;
 import com.testlinkrestapi.service.TestPlanService;
+import com.testlinkrestapi.util.DataUtils;
 
-public class GetTestPlan {
+public class CreateTestPlan {
     static String username = "admin";
     static String password = "admin";
     static String baseURL = "http://localhost/testlink1914";
@@ -21,18 +22,17 @@ public class GetTestPlan {
     
     TestPlanBean tp= new TestPlanBean();
   	TestPlanService	tlService = new TestPlanService(restpath, devKey);
- 
-	@Ignore
+    @Before
+    public void setTestPlanBean(){
+    	tp.setIsActive(true);
+	  	tp.setIsPublic(true);
+	  	tp.setName(DataUtils.getRandom("tp"));
+	  	tp.setTestrojectID(1).setNotes("notes");	
+    }
+    //@Ignore
 	@Test
-	
-	
-	public void TestTestPlanGetList(){    	
-	    int projectID=1;
-     	tlService.getProjectTestPlans(projectID);
-	}
-	@Test
-	public void TestTestPlanGet(){    	
-	    int testplanID=18;
-     	tlService.getTestPlan(testplanID);
+	public void TestCreateTestPlan(){
+		TestPlanBean bean=	tlService.createTestPlan(tp);
+		System.out.println("id='"+bean.getId()+"'\nname='"+bean.getName()+"'");
 	}
 }

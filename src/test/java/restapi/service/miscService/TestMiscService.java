@@ -1,4 +1,4 @@
-package service;
+package restapi.service.miscService;
 
 import org.junit.Assert;
 import org.junit.Ignore;

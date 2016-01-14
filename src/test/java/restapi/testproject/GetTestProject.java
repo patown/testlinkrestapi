@@ -19,7 +19,7 @@ import com.testlinkrestapi.model.Options;
 import com.testlinkrestapi.model.TestPlanBean;
 import com.testlinkrestapi.model.TestProjectBean;
 import com.testlinkrestapi.model.TestProjectRspBean;
-import com.testlinkrestapi.model.TestProjectsRspBean;
+
 import com.testlinkrestapi.restclient.Response;
 import com.testlinkrestapi.restclient.RestClient;
 import com.testlinkrestapi.service.TestPlanService;
