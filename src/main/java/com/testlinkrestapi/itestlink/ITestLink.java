@@ -167,7 +167,7 @@ public interface ITestLink {
 	     * @throws TestLinkAPIException if an error occurs when retrieving the test plans
 	     * @since 1.9.14
 	     */
-	    public ArrayList<TestPlanBean> getProjectTestPlans(Integer projectID);
+	    public ArrayList<TestPlanBean> getTestPlansInTestProject(Integer projectID);
 	    
 //	    
 //	    /**
@@ -212,15 +212,17 @@ public interface ITestLink {
 	     */
 	    public TestPlanBean updateTestPlan(TestPlanBean testPlanBean);
 	    
-	    /**
-	     * Retrieves a Test Plan by its ID.
-	     * 
-	     * @param testPlanID Test Plan ID.
-	     * @return Test Plan.
-	     * @throws 
-	     * @since 1.9.14
-	     */
-	    public TestPlanBean getTestPlanByID(Integer testPlanID) ;
+//	    /**
+//	     * Retrieves a Test Plan by its ID.
+//	     * 
+//	     * @param testPlanID Test Plan ID.
+//	     * @return Test Plan.
+//	     * @throws 
+//	     * @since 1.9.14
+//	     */
+//	    public TestPlanBean getTestPlanByID(Integer testPlanID) ;
+	    
+	    
 //
 //	    /**
 //	     * Retrieves Platforms of a Test Plan.

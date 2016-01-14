@@ -79,16 +79,16 @@ public class TestPlanService extends BaseService {
     	return doPost(url, string);
     }
     
-    
-    public ArrayList<TestPlanBean> getProjectTestPlans(Integer projectID){
-    	//testprojects/:id/testplans
-    	String url=getRestBaseUrl()+TestLinkRestApis.TEST_PROJECTS+"/"+projectID+"/"+TestLinkRestApis.TEST_PLANS;
-    	System.out.println(url);
-    	String result=getRestClient().get(url);
-    	System.out.println(result);
-    	//TODO:parse result to arraylist
-    	return null;
-    }
+//    //move to testprojectservice
+//    public ArrayList<TestPlanBean> getProjectTestPlans(Integer projectID){
+//    	//testprojects/:id/testplans
+//    	String url=getRestBaseUrl()+TestLinkRestApis.TEST_PROJECTS+"/"+projectID+"/"+TestLinkRestApis.TEST_PLANS;
+//    	System.out.println(url);
+//    	String result=getRestClient().get(url);
+//    	System.out.println(result);
+//    	//TODO:parse result to arraylist
+//    	return null;
+//    }
     public String getTestPlan(Integer testplanID){
     	//testprojects/:id/testplans
     	String url=getRestUrl()+"/"+testplanID;

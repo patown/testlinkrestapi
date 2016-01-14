@@ -25,14 +25,18 @@
 package com.testlinkrestapi.service;
 
 
+import java.util.ArrayList;
+
 import net.sf.json.JSONObject;
 
+import com.testlinkrestapi.model.TestPlanBean;
 import com.testlinkrestapi.model.TestProjectBean;
 import com.testlinkrestapi.model.TestProjectRspBean;
 import com.testlinkrestapi.model.constants.TestLinkRestApis;
 import com.testlinkrestapi.restclient.Response;
 import com.testlinkrestapi.util.BeanUtils;
 import com.testlinkrestapi.util.DataUtils;
+import com.testlinkrestapi.util.ResponseUtils;
 
 
 
@@ -104,7 +108,7 @@ public class TestProjectService extends BaseService {
     public TestProjectBean getTestProjectByName(String testprojectName){
     	String result=getTestProject(testprojectName);
     	//TODO: using response class
-    	TestProjectRspBean rspBean =DataUtils.getItem2Bean(result,TestProjectRspBean.class);
+    	TestProjectRspBean rspBean =ResponseUtils.getTestProjectRspBean(result);
     	TestProjectBean bean =BeanUtils.getTestProjectBeanFromTestProjectRspBean(rspBean);
     	return bean;
     }
@@ -116,10 +120,23 @@ public class TestProjectService extends BaseService {
 	public TestProjectBean getTestProjectByID(Integer projectID) {
     	String result=getTestProject(projectID);
     	//TODO: using response class
-    	TestProjectRspBean rspBean =DataUtils.getItem2Bean(result,TestProjectRspBean.class);
+    	TestProjectRspBean rspBean =ResponseUtils.getTestProjectRspBean(result);
     	TestProjectBean bean =BeanUtils.getTestProjectBeanFromTestProjectRspBean(rspBean);
     	return bean;
 	}
+	
+    /*
+     * @param testprojectID
+     * @return TestProjectBean
+     */
+	public ArrayList<TestPlanBean>  getTestPlansInTestProject(Integer projectID) {
+    	//testprojects/:id/testplans
+    	String url=getRestUrl()+"/"+projectID+"/"+TestLinkRestApis.TEST_PLANS;
+    	String result=getRestClient().get(url);
+    	System.out.println(result);
+    	return null;
+	}
+	
 	
 	@Override
 	protected String setRestUrl() {

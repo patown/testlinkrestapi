@@ -9,18 +9,18 @@ import com.testlinkrestapi.TLException;
 import com.testlinkrestapi.model.TestPlanBean;
 import com.testlinkrestapi.restclient.RestClient;
 import com.testlinkrestapi.service.TestPlanService;
+import com.testlinkrestapi.service.TestProjectService;
 
 public class GetTestPlan {
-    static String username = "admin";
-    static String password = "admin";
-    static String baseURL = "http://localhost/testlink1914";
-	private static String restpath=baseURL+"/lib/api/rest/v2/";
-
-    private static String devKey="40f388699bf787b88f92030f6caff55f";
-    
+	private static String username = "admin";
+	private static String password = "admin";
+	private static String baseURL = "http://localhost/testlink1914";
+	private static String  resturl=baseURL+"/lib/api/rest/v2/";
+	   // private static String devKey="40f388699bf787b88f92030f6caff55f";
+    private static String devKey="0dcfc5b0ef5e5df6c7fc4fa9a3b9df95";
     
 //    TestPlanBean tp= new TestPlanBean();
-  	TestPlanService	tlService = new TestPlanService(restpath, devKey);
+    TestProjectService	tlService = new TestProjectService(resturl,devKey);
 // 
 //	@Ignore
 //	@Test
@@ -32,7 +32,6 @@ public class GetTestPlan {
 //	}
 	@Test
 	public void TestTestPlanGet(){    	
-	    int testplanID=40;
-     System.out.println(tlService.getTestPlan(testplanID));
+     System.out.println(tlService.getTestPlansInTestProject(6));
 	}
 }

@@ -38,6 +38,7 @@ import com.testlinkrestapi.model.TestCaseBean;
 import com.testlinkrestapi.model.TestPlanBean;
 import com.testlinkrestapi.model.TestProjectBean;
 import com.testlinkrestapi.model.TestProjectRspBean;
+import com.testlinkrestapi.model.TestProjectsRspBean;
 import com.testlinkrestapi.model.TestSuiteBean;
 import com.testlinkrestapi.model.constants.TestLinkParams;
 import com.testlinkrestapi.model.constants.TestLinkResponse;
@@ -91,6 +92,22 @@ public final class ResponseUtils {
 		JSONObject item=JSONObject.fromObject(response).getJSONObject(TestLinkResponse.ITEM.toString());
 	 	return   (T)JSONObject.toBean(item, clazz);
   }
+	
+	public static TestProjectRspBean getTestProjectRspBean(String response) {
+		TestProjectRspBean bean = new TestProjectRspBean();
+		if(IsResponseOK(response)){
+		bean= getItem2Bean(response,TestProjectRspBean.class);
+		}
+		return bean ;
+	}
+	
+	public static TestProjectsRspBean getTestProjectsRspBean(String response) {
+		TestProjectsRspBean bean = new TestProjectsRspBean();
+		if(IsResponseOK(response)){
+		bean= getItem2Bean(response,TestProjectsRspBean.class);
+		}
+		return bean ;
+	}
 	
     }
     
