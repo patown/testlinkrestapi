@@ -23,6 +23,7 @@
  */
 package com.testlinkrestapi.model.constants;
 
+
 /**
  * 
  * <p>
@@ -36,6 +37,7 @@ package com.testlinkrestapi.model.constants;
  */
 public enum TestLinkResponse {
     ID("id"), 
+    ITEM("item"),
     MESSAGE("message"),
     OK("ok"),
     STATUS("status"),

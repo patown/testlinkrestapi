@@ -5,12 +5,16 @@ import java.util.ArrayList;
 
 
 
+
+
 import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 import com.testlinkrestapi.model.TestPlanBean;
 import com.testlinkrestapi.model.constants.TestLinkResponse;
 import com.testlinkrestapi.model.constants.TestLinkRestApis;
 import com.testlinkrestapi.restclient.Response;
+import com.testlinkrestapi.util.BeanUtils;
 import com.testlinkrestapi.util.DataUtils;
+import com.testlinkrestapi.util.ResponseUtils;
 
 import net.sf.json.JSON;
 
@@ -30,9 +34,16 @@ public class TestPlanService extends BaseService {
 	String result=doPost(string);
 	return result;
     }
-    public String createTestPlan(TestPlanBean testplan){
+    public TestPlanBean createTestPlan(TestPlanBean testplan){
+    	TestPlanBean bean = new TestPlanBean();
     	String string =DataUtils.getJSONTestPlan(testplan);
-		return createTestPlan(string);
+    	String response=createTestPlan(string);
+    	if(ResponseUtils.IsResponseOK(response)){
+    		Integer id =ResponseUtils.getID(response);
+    		String testplaString =getTestPlan(id);
+    		bean=BeanUtils.getBeanfromString(testplaString, TestPlanBean.class);
+    	}
+		return bean ;
 	  	}
     
 //    public TestPlanBean updateTestPlan(TestPlanBean testplan){

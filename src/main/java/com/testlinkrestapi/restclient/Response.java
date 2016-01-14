@@ -38,7 +38,7 @@ private JSONObject jsonObj;//=new JSONObject();
 //		this.item = item;
 //	}
 	
-	public boolean IsResponseOK(){
+	public  boolean IsResponseOK(){
 		return TestLinkResponse.OK.toString().equalsIgnoreCase(getStatus()) && TestLinkResponse.OK.toString().equalsIgnoreCase(getMessage());
 	}
 	

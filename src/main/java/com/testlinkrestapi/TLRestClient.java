@@ -29,6 +29,7 @@ public class TLRestClient implements ITestLink{
     private MiscService miscService;
     private TestProjectService testprojectService;
     private TestSuiteService testSuiteService ;
+    private TestPlanService testPlanService;
     /**
      * Creates an authenticated TestLink rest client.
      *
@@ -40,7 +41,7 @@ public class TLRestClient implements ITestLink{
     public TLRestClient(String baseURL, String devKey) throws TLException {
     	this.restClient= new RestClient(devKey,devKey);
      	this.tpService=  new TestPlanService(baseURL,devKey);
-    	this.miscService= new MiscService(baseURL,devKey) ;
+    	this.miscService= new MiscService(baseURL,devKey);
     	this.testprojectService= new TestProjectService(baseURL,devKey) ;
     	this.testSuiteService = new TestSuiteService(baseURL,devKey);
 	}
@@ -116,7 +117,8 @@ public class TLRestClient implements ITestLink{
 	@Override
 	public TestPlanBean createTestPlan(TestPlanBean testPlanBean) {
 		// TODO Auto-generated method stub
-		return null;
+		 return testPlanService.createTestPlan(testPlanBean);
+		 
 	}
 
 

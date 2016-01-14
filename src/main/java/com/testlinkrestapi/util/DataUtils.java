@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) <2010> <Bruno P. Kinoshita>
+ * Copyright (c) <2015> <Antony Chen>
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -200,12 +200,7 @@ public final class DataUtils {
     		return (T) JSONObject.toBean(decode2JSON(response),clazz);
     	}
     	
-    	public static <T> T getItem2Bean(String response, Class<T> clazz) { 
-    		JSONObject item=JSONObject.fromObject(response).getJSONObject("item");
-    	 	return   (T)JSONObject.toBean(item, clazz);
-      }
 
-    	
     
     public static JSONObject decode2JSON(String jsonString){
     	//{"status":"ok","message":"ok","id":18}
@@ -232,7 +227,9 @@ public final class DataUtils {
     	return bool;
     }
     
-    
+    public static String getRandom(String string){
+    	return string+"_"+System.currentTimeMillis();
+    }
 
 
 }

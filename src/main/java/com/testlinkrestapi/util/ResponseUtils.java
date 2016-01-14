@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright (c) <2010> <Antony Chen>
+ * Copyright (c) <2015> <Antony Chen>
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -40,63 +40,61 @@ import com.testlinkrestapi.model.TestProjectBean;
 import com.testlinkrestapi.model.TestProjectRspBean;
 import com.testlinkrestapi.model.TestSuiteBean;
 import com.testlinkrestapi.model.constants.TestLinkParams;
+import com.testlinkrestapi.model.constants.TestLinkResponse;
 import com.testlinkrestapi.restclient.Response;
 
 
 
 /**
- * Utility class with methods to convert beans.
+ * Utility class with methods to handle the response.
  *
  * @author Antony Chen
  * @since 1.9.14
  */
-public final class BeanUtils {
+public final class ResponseUtils {
     
 //    private static final Logger log = Logger.getLogger(Util.class.getName());
 
-    private BeanUtils() {
+
+//	public static String getStatus(String response)  { 
+//		JSONObject item=JSONObject.fromObject(response).getJSONObject("item");
+//	 	return   (T)JSONObject.toBean(item, clazz);
+//  }
+	
+	public static JSONObject getJSONObj(String response,String key)  { 
+		JSONObject item=JSONObject.fromObject(response).getJSONObject(key);
+	 	return item;
+  }
+	
+	public static String getJSONString(String response,String key)  { 
+		String item=JSONObject.fromObject(response).getString(key);
+		System.out.println(key+"="+item);
+	 	return item;
+  }
+	
+	public static String getStatus(String response){
+		return getJSONString(response,TestLinkResponse.STATUS.toString());
+	}
+	public static String getMessage(String response){
+		return getJSONString(response,TestLinkResponse.MESSAGE.toString());
+	}
+
+	public static  boolean IsResponseOK(String response){
+		return TestLinkResponse.OK.toString().equalsIgnoreCase(getStatus(response)) && TestLinkResponse.OK.toString().equalsIgnoreCase(getMessage(response));
+	}
+	
+	public static Integer getID(String response){
+		return DataUtils.getInt(getJSONString(response,TestLinkResponse.ID.toString()));
+	}
+
+	public static <T> T getItem2Bean(String response, Class<T> clazz) { 
+		JSONObject item=JSONObject.fromObject(response).getJSONObject(TestLinkResponse.ITEM.toString());
+	 	return   (T)JSONObject.toBean(item, clazz);
+  }
+	
     }
-
- 
-
     
-    /**
-     * @param  TestProjectRspBean
-     * @return TestProjectBean.
-     */
-    public static final TestProjectBean getTestProjectBeanFromTestProjectRspBean(TestProjectRspBean rspBean) {
-    	TestProjectBean tpBean =new TestProjectBean();
-     	tpBean.setId(rspBean.getId())
-    	.setName(rspBean.getName())
-    	.setPrefix(rspBean.getPrefix())
-    	.setNotes(rspBean.getNotes())
-    	.setActive(DataUtils.getInt(rspBean.getActive()))
-    	.setIs_public(DataUtils.getInt(rspBean.getIs_public()))
-    	//.setOptions(rspBean.getOpt())
-    	.setColor(rspBean.getColor());
-    	return tpBean;
-    }
-    		
-
-    /**
-     * @param  Json String of Test Project Options.
-     * @return Options
-     */
-    public static final Options getOptions(String string) {
-    	Options options =(Options) getBeanfromString(string, Options.class);
-    	return options;
-    }
-    
-	public static <T> T getBeanfromString(String string, Class<T> clazz)  {
-    			JSONObject item=JSONObject.fromObject(string);
-	    		return (T) JSONObject.toBean(item,clazz);
-	    	}
- 
-    private static Integer getInt(String string){
-    	return Integer.parseInt(string);
-    }
-
     
 
 
-}
+
