@@ -69,7 +69,7 @@ public class TestPlanService extends BaseService {
     }
     
     
-    public ArrayList<TestPlanBean> getProjectTestPlans(int projectID){
+    public ArrayList<TestPlanBean> getProjectTestPlans(Integer projectID){
     	//testprojects/:id/testplans
     	String url=getRestBaseUrl()+TestLinkRestApis.TEST_PROJECTS+"/"+projectID+"/"+TestLinkRestApis.TEST_PLANS;
     	System.out.println(url);
@@ -78,7 +78,7 @@ public class TestPlanService extends BaseService {
     	//TODO:parse result to arraylist
     	return null;
     }
-    public String getTestPlan(int testplanID){
+    public String getTestPlan(Integer testplanID){
     	//testprojects/:id/testplans
     	String url=getRestUrl()+"/"+testplanID;
     	System.out.println(url);

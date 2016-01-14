@@ -23,7 +23,13 @@
  */
 package com.testlinkrestapi.itestlink;
 
+import java.util.ArrayList;
+
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
+import com.testlinkrestapi.model.TestCaseBean;
+import com.testlinkrestapi.model.TestPlanBean;
 import com.testlinkrestapi.model.TestProjectBean;
+import com.testlinkrestapi.model.TestSuiteBean;
 
 /**
  * TestLink Interface.
@@ -118,7 +124,7 @@ public interface ITestLink {
 	     * @param devKey Developer Key.
 	     * @return <code>true</code> if devKey is valid, <code>false</code> otherwise.
 	     * @throws TestLinkAPIException
-	     * @since 1.0
+	     * @since 1.9.14
 	     */
 
 		
@@ -152,6 +158,16 @@ public interface ITestLink {
 	     * @since 1.9.14
 	     */
 	    public TestProjectBean getTestProjectByName(String projectName) ;
+	       
+	    /**
+	     * Retrieves the platPlans of a test project.
+	     * 
+	     * @param projectId test project ID
+	     * @return test plan ArrayList
+	     * @throws TestLinkAPIException if an error occurs when retrieving the test plans
+	     * @since 1.9.14
+	     */
+	    public ArrayList<TestPlanBean> getProjectTestPlans(Integer projectID);
 	    
 //	    
 //	    /**
@@ -171,16 +187,84 @@ public interface ITestLink {
 	     * @throws 
 	     * @since 1.9.14
 	     */
-	    public TestProjectBean[] getProjects() ;
+	    public ArrayList<TestProjectBean> getProjects() ;
+	    
+	    
+	    /* XX Test Plan operations XX */
+
+	    /**
+	     * Creates a Test Plan.
+	     * 
+	     * @param TestPlanBean.
+	     * @param TestPlanBean
+	     * @throws 
+	     * @since 1.9.14
+	     */
+	    public TestPlanBean createTestPlan(TestPlanBean testPlanBean);
+	    
+	    /**
+	     * update a Test Plan.
+	     * 
+	     * @param TestPlanBean.
+	     * @param TestPlanBean.
+	     * @throws 
+	     * @since 1.9.14
+	     */
+	    public TestPlanBean updateTestPlan(TestPlanBean testPlanBean);
+	    
+	    /**
+	     * Retrieves a Test Plan by its ID.
+	     * 
+	     * @param testPlanID Test Plan ID.
+	     * @return Test Plan.
+	     * @throws 
+	     * @since 1.9.14
+	     */
+	    public TestPlanBean getTestPlanByID(Integer testPlanID) ;
 //
 //	    /**
-//	     * Retrieves an array of Test Plans associated to a Test Project.
+//	     * Retrieves Platforms of a Test Plan.
 //	     * 
-//	     * @param projectId Test Project Id.
-//	     * @return Array of Test Plans.
+//	     * @param planId Test Plan Id.
+//	     * @return Platforms.
 //	     * @throws TestLinkAPIException
 //	     */
-//	    public TestPlanBean[] getProjectTestPlans(Integer projectId) ;
+//	    public Platform[] getTestPlanPlatforms(Integer planId) ;
+//
+//	    /**
+//	     * Gets stats for test plan.
+//	     * 
+//	     * @param testPlanId test plan ID
+//	     * @return stats
+//	     * @throws TestLinkAPIException
+//	     */
+//	    public Map<String, Object> getTotalsForTestPlan(Integer testPlanId);
+//
+//	    /**
+//	     * Removes a platform from a test plan.
+//	     * 
+//	     * @param testProjectId test project ID
+//	     * @param testPlanId test plan ID
+//	     * @param platformName platform name
+//	     * @return status message
+//	     * @throws TestLinkAPIException
+//	     */
+//	    public Map<String, Object> removePlatformFromTestPlan(Integer testProjectId, Integer testPlanId, String platformName) ;
+//	    
+//	    /**
+//	     * Adds a platform to a test plan.
+//	     * 
+//	     * @param testProjectId test project ID
+//	     * @param testPlanId test plan ID
+//	     * @param platformName platform name
+//	     * @return status message
+//	     * @throws TestLinkAPIException
+//	     */
+//	    public Map<String, Object> addPlatformToTestPlan(Integer testProjectId, Integer testPlanId, String platformName) ;
+
+	    
+
+
 //
 //	    /**
 //	     * Uploads an attachment to a Test Project.
@@ -297,71 +381,6 @@ public interface ITestLink {
 //	    ) ;
 //
 
-//	    /* XX Test Plan operations XX */
-//
-//	    /**
-//	     * Creates a Test Plan.
-//	     * 
-//	     * @param planName Test Plan name.
-//	     * @param projectName Test Project name.
-//	     * @param notes Test Plan notes.
-//	     * @param isActive
-//	     * @param isPublic
-//	     * @throws TestLinkAPIException
-//	     * @since 1.0
-//	     */
-//	    public TestPlanBean createTestPlan(String planName, String projectName, String notes, Boolean isActive, Boolean isPublic);
-//
-//	    /**
-//	     * Retrieves a Test Plan by its name.
-//	     * 
-//	     * @param planName Test Plan name.
-//	     * @param projectName Test Project name.
-//	     * @return Test Plan.
-//	     * @throws TestLinkAPIException
-//	     * @since 1.0
-//	     */
-//	    public TestPlanBean getTestPlanByName(String planName, String projectName) ;
-//
-//	    /**
-//	     * Retrieves Platforms of a Test Plan.
-//	     * 
-//	     * @param planId Test Plan Id.
-//	     * @return Platforms.
-//	     * @throws TestLinkAPIException
-//	     */
-//	    public Platform[] getTestPlanPlatforms(Integer planId) ;
-//
-//	    /**
-//	     * Gets stats for test plan.
-//	     * 
-//	     * @param testPlanId test plan ID
-//	     * @return stats
-//	     * @throws TestLinkAPIException
-//	     */
-//	    public Map<String, Object> getTotalsForTestPlan(Integer testPlanId);
-//
-//	    /**
-//	     * Removes a platform from a test plan.
-//	     * 
-//	     * @param testProjectId test project ID
-//	     * @param testPlanId test plan ID
-//	     * @param platformName platform name
-//	     * @return status message
-//	     * @throws TestLinkAPIException
-//	     */
-//	    public Map<String, Object> removePlatformFromTestPlan(Integer testProjectId, Integer testPlanId, String platformName) ;
-//	    
-//	    /**
-//	     * Adds a platform to a test plan.
-//	     * 
-//	     * @param testProjectId test project ID
-//	     * @param testPlanId test plan ID
-//	     * @param platformName platform name
-//	     * @return status message
-//	     * @throws TestLinkAPIException
-//	     */
-//	    public Map<String, Object> addPlatformToTestPlan(Integer testProjectId, Integer testPlanId, String platformName) ;
 //	    
 //	    /* XX Build operations XX */
 //
@@ -401,10 +420,15 @@ public interface ITestLink {
 //	     */
 //	    public Map<String, Object> getExecCountersByBuild(Integer testPlanId) ;
 //
-//	    /* XX Test Suite operations XX */
-//
-//	    public TestSuite createTestSuite(Integer testProjectId, String name, String details, Integer parentId,
-//	            Integer order, Boolean checkDuplicatedName, ActionOnDuplicate actionOnDuplicatedName);
+	    /* XX Test Suite operations XX */
+	    /**
+	     * create a test suite.
+	     * 
+	     * @param TestSuiteBean.
+	     * @return TestSuiteBean.
+	     * @throws 
+	     */
+	    public TestSuiteBean createTestSuite(TestSuiteBean testsuite);
 //	    
 //
 //	    /**
@@ -453,31 +477,17 @@ public interface ITestLink {
 //	     */
 //	    public TestSuite[] getFirstLevelTestSuitesForTestProject(Integer testProjectId) ;
 //
-//	    /* XX Test Case operations XX */
-//
-//	    /**
-//	     * Creates a Test Case.
-//	     * 
-//	     * @param testCaseName
-//	     * @param testSuiteId
-//	     * @param testProjectId
-//	     * @param authorLogin
-//	     * @param summary
-//	     * @param steps
-//	     * @param preconditions
-//	     * @param importance
-//	     * @param execution
-//	     * @param order
-//	     * @param internalId
-//	     * @param checkDuplicatedName
-//	     * @param actionOnDuplicatedName
-//	     * @return TestCase.
-//	     * @throws TestLinkAPIException
-//	     */
-//	    public TestCase createTestCase(String testCaseName, Integer testSuiteId, Integer testProjectId, String authorLogin,
-//	            String summary, List<TestCaseStep> steps, String preconditions, TestImportance importance,
-//	            ExecutionType execution, Integer order, Integer internalId, Boolean checkDuplicatedName,
-//	            ActionOnDuplicate actionOnDuplicatedName);
+	    
+	    /* XX Test Case operations XX */
+
+	    /**
+	     * Creates a Test Case.
+	     * 
+	     * @param TestCaseBean.
+	     * @return TestCaseBean.
+	     * @throws 
+	     */
+	    public TestCaseBean createTestCase(TestCaseBean testcase);
 //
 //	    /**
 //	     * Create, Update or Push a list of TestCaseSteps in a Test Case.
