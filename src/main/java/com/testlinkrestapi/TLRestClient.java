@@ -2,6 +2,7 @@ package com.testlinkrestapi;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import net.sf.json.JSON;
 import net.sf.json.JSONObject;
@@ -98,7 +99,7 @@ public class TLRestClient implements ITestLink{
 	@Override
 	public ArrayList<TestProjectBean> getProjects() {
 		// TODO Auto-generated method stub
-		return null;
+		return testprojectService.getTestProjectList();
 	}
 
 
@@ -133,28 +134,10 @@ public class TLRestClient implements ITestLink{
 		return null;
 	}
 
-
-
-
-
-
-
-	@Override
-	public TestPlanBean getTestPlanByID(Integer testPlanID) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-
-
-
-
 	@Override
 	public TestSuiteBean createTestSuite(TestSuiteBean testsuite) {
 		// TODO Auto-generated method stub
-		return null;
+		return testSuiteService.createTestSuite(testsuite);
 	}
 
 

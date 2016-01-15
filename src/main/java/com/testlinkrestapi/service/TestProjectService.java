@@ -26,6 +26,7 @@ package com.testlinkrestapi.service;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import net.sf.json.JSONObject;
 
@@ -79,6 +80,17 @@ public class TestProjectService extends BaseService {
     	//System.out.println(result);
     	//TODO:parse result to arraylist
     	return result;
+    }
+    
+    /*
+     * @return testprojects
+     */
+    public ArrayList<TestProjectBean> getTestProjectList(){
+    	String url=getRestUrl();
+    	String result=doGet(url);
+    	//System.out.println(result);
+    	//TODO:parse result to arraylist
+    	return ResponseUtils.getTestProjectBeanList(result);
     }
     
     /*

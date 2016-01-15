@@ -25,9 +25,12 @@ package com.testlinkrestapi.util;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import net.sf.json.JSON;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import net.sf.json.JSONSerializer;
 
@@ -93,6 +96,21 @@ public final class ResponseUtils {
 	 	return   (T)JSONObject.toBean(item, clazz);
   }
 	
+	public static <T> ArrayList<T> getItem2BeanList(String response, Class<T> clazz) { 
+	 	JSONArray jsonArray =JSONObject.fromObject(response).getJSONArray(TestLinkResponse.ITEM.toString());
+		ArrayList<T> beanList = new ArrayList<T>();
+		for(int i=0;i<jsonArray.size();i++){
+			System.out.println(jsonArray.getString(i));
+			JSONObject obj=JSONObject.fromObject(jsonArray.getString(i));
+			T bean =(T) JSONObject.toBean(obj,clazz);
+	    	beanList.add(bean);
+		}
+		return beanList;
+  }
+	
+	
+	
+	
 	public static TestProjectRspBean getTestProjectRspBean(String response) {
 		TestProjectRspBean bean = new TestProjectRspBean();
 		if(IsResponseOK(response)){
@@ -101,12 +119,22 @@ public final class ResponseUtils {
 		return bean ;
 	}
 	
-	public static TestProjectsRspBean getTestProjectsRspBean(String response) {
-		TestProjectsRspBean bean = new TestProjectsRspBean();
+	private static ArrayList<TestProjectsRspBean> getTestProjectsRspBean(String response) {
+		ArrayList<TestProjectsRspBean> beanList = new ArrayList<TestProjectsRspBean>();
 		if(IsResponseOK(response)){
-		bean= getItem2Bean(response,TestProjectsRspBean.class);
+			beanList= getItem2BeanList(response,TestProjectsRspBean.class);
 		}
-		return bean ;
+		return beanList ;
+	}
+	
+	public static ArrayList<TestProjectBean> getTestProjectBeanList(String response) {
+		List<TestProjectsRspBean> beanList = new ArrayList<TestProjectsRspBean>();
+		ArrayList<TestProjectBean> projList=	new ArrayList<TestProjectBean>();
+		if(IsResponseOK(response)){
+			beanList= getTestProjectsRspBean(response);
+			projList=BeanUtils.getTestProjectBeanListFromTestProjectsRsp(beanList);
+		}
+		return projList ;
 	}
 	
     }

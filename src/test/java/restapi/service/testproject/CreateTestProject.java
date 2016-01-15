@@ -1,4 +1,4 @@
-package restapi.testproject;
+package restapi.service.testproject;
 
 
 import junit.framework.Assert;

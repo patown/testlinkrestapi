@@ -25,6 +25,8 @@ package com.testlinkrestapi.util;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import net.sf.json.JSON;
@@ -38,6 +40,7 @@ import com.testlinkrestapi.model.TestCaseBean;
 import com.testlinkrestapi.model.TestPlanBean;
 import com.testlinkrestapi.model.TestProjectBean;
 import com.testlinkrestapi.model.TestProjectRspBean;
+import com.testlinkrestapi.model.TestProjectsRspBean;
 import com.testlinkrestapi.model.TestSuiteBean;
 import com.testlinkrestapi.model.constants.TestLinkParams;
 import com.testlinkrestapi.restclient.Response;
@@ -76,7 +79,22 @@ public final class BeanUtils {
     	.setColor(rspBean.getColor());
     	return tpBean;
     }
-    		
+    	
+    /**
+     * @param  TestProjectRspBean
+     * @return TestProjectBean.
+     */
+    public static final ArrayList<TestProjectBean> getTestProjectBeanListFromTestProjectsRsp(List<TestProjectsRspBean> beanList) {
+    	ArrayList<TestProjectBean> projBeanList =new ArrayList<TestProjectBean>();
+     	 for(int i=0;i<beanList.size();i++){
+     		TestProjectBean bean = new TestProjectBean();
+     		 if(null!=beanList.get(i)){
+     			bean=getTestProjectBeanFromTestProjectRspBean(beanList.get(i));
+     		 }
+     		projBeanList.add(bean);
+     	 }
+    	return projBeanList;
+    }
 
     /**
      * @param  Json String of Test Project Options.
