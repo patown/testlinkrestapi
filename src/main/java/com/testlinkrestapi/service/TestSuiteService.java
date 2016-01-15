@@ -20,10 +20,11 @@ public class TestSuiteService extends BaseService {
 	return result;
     }
 	
-    public String createTestSuite(TestSuiteBean testsuite){
+    public TestSuiteBean createTestSuite(TestSuiteBean testsuite){
     	String string =DataUtils.getJSONTestSuite(testsuite);
     	System.out.println(string);
-    	return createTestSuite(string);
+    	String result= createTestSuite(string);
+    	return null;
     }
 	@Override
 	protected String setRestUrl() {

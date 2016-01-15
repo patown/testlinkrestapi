@@ -34,14 +34,22 @@ public class TestPlanService extends BaseService {
 	String result=doPost(string);
 	return result;
     }
+	/*
+	 * @return TestPlanBean . So far the returned bean is a combination of 
+	 * the input TestPlanBean with an returned testplan ID. 
+	 * The bean is not from the server's response due the the following 
+	 * @Bug https://github.com/patown/testlinkrestapi/issues/2
+	 * 
+	 */
     public TestPlanBean createTestPlan(TestPlanBean testplan){
-    	TestPlanBean bean = new TestPlanBean();
+    	TestPlanBean bean = testplan;
     	String string =DataUtils.getJSONTestPlan(testplan);
     	String response=createTestPlan(string);
     	if(ResponseUtils.IsResponseOK(response)){
     		Integer id =ResponseUtils.getID(response);
-    		String testplaString =getTestPlan(id);
-    		bean=BeanUtils.getBeanfromString(testplaString, TestPlanBean.class);
+    		bean.setId(id);
+    		//String testplaString =getTestPlan(id);
+    		//bean=BeanUtils.getBeanfromString(testplaString, TestPlanBean.class);
     	}
 		return bean ;
 	  	}

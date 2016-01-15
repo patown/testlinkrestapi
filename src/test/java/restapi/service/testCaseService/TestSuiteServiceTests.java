@@ -18,7 +18,8 @@ public class TestSuiteServiceTests {
     static String baseURL = "http://localhost/testlink1914";
 	private static String restpath=baseURL+"/lib/api/rest/v2/";
 	private static String testsuitepath=restpath+"testsuites";
-    private static String devKey="0dcfc5b0ef5e5df6c7fc4fa9a3b9df95";
+	private static String devKey="40f388699bf787b88f92030f6caff55f";
+    //private static String devKey="0dcfc5b0ef5e5df6c7fc4fa9a3b9df95";
     
 
     TestSuiteService suiteService = new TestSuiteService(restpath, devKey);
@@ -63,11 +64,9 @@ public class TestSuiteServiceTests {
 		.setNotes("iamnotes")
 		.setParentID(1)
 		.setOrder(104);
-		
-		
 		System.out.println("");
-		String result=suiteService.createTestSuite(tsbean);
-		System.out.println(result);
+		TestSuiteBean result=suiteService.createTestSuite(tsbean);
+	//	System.out.println(result);
 	}
 	
 }
