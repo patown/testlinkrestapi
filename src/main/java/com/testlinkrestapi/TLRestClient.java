@@ -16,6 +16,7 @@ import com.testlinkrestapi.model.constants.TestLinkRestApis;
 import com.testlinkrestapi.restclient.Response;
 import com.testlinkrestapi.restclient.RestClient;
 import com.testlinkrestapi.service.MiscService;
+import com.testlinkrestapi.service.TestCaseService;
 import com.testlinkrestapi.service.TestPlanService;
 import com.testlinkrestapi.service.TestProjectService;
 import com.testlinkrestapi.service.TestSuiteService;
@@ -26,7 +27,7 @@ public class TLRestClient implements ITestLink{
     private RestClient restClient;
 
     
-    private TestPlanService tpService;
+    private TestCaseService testCaseService;
     private MiscService miscService;
     private TestProjectService testprojectService;
     private TestSuiteService testSuiteService ;
@@ -41,11 +42,11 @@ public class TLRestClient implements ITestLink{
      */
     public TLRestClient(String baseURL, String devKey) throws TLException {
     	this.restClient= new RestClient(devKey,devKey);
-     	this.tpService=  new TestPlanService(baseURL,devKey);
     	this.miscService= new MiscService(baseURL,devKey);
     	this.testprojectService= new TestProjectService(baseURL,devKey) ;
     	this.testSuiteService = new TestSuiteService(baseURL,devKey);
-	}
+    	this.testCaseService= new TestCaseService(baseURL,devKey);
+    }
 
 
 	
@@ -149,7 +150,7 @@ public class TLRestClient implements ITestLink{
 	@Override
 	public TestCaseBean createTestCase(TestCaseBean testcase) {
 		// TODO Auto-generated method stub
-		return null;
+		return testCaseService.createTestCase(testcase);
 	}
     
  

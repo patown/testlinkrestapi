@@ -15,8 +15,8 @@ public class TestCaseTests {
     static String baseURL = "http://localhost/testlink1914";
 	private static String restpath=baseURL+"/lib/api/rest/v2/";
 
-    //private static String devKey="0dcfc5b0ef5e5df6c7fc4fa9a3b9df95";//pc
-    private static String devKey="40f388699bf787b88f92030f6caff55f";//nb
+    private static String devKey="0dcfc5b0ef5e5df6c7fc4fa9a3b9df95";//pc
+   // private static String devKey="40f388699bf787b88f92030f6caff55f";//nb
 
     TestCaseService suiteService = new TestCaseService(restpath, devKey);
 //	@Ignore
@@ -59,10 +59,9 @@ public class TestCaseTests {
 		.setAuthorID(1).setExecutionType(1).setImportance(2).setOrder(100)
 		.setPreconditions("noprecondition").setTestSuite(2).setSummary("iamsummary")
 		.setTestProject(1);
-		
-		System.out.println("");
-		String result=suiteService.createTestCase(bean);
-		System.out.println(result);
+
+		TestCaseBean result=suiteService.createTestCase(bean);
+		System.out.println(result.getId()+result.getName());
 	}
 	
 }

@@ -1,9 +1,14 @@
 package com.testlinkrestapi.service;
 
 
+import java.util.ArrayList;
+
 import com.testlinkrestapi.model.TestCaseBean;
+import com.testlinkrestapi.model.TestProjectBean;
 import com.testlinkrestapi.model.constants.TestLinkRestApis;
+import com.testlinkrestapi.util.BeanUtils;
 import com.testlinkrestapi.util.DataUtils;
+import com.testlinkrestapi.util.ResponseUtils;
 
 
 public class TestCaseService extends BaseService {
@@ -18,10 +23,16 @@ public class TestCaseService extends BaseService {
 	 return doPost(string);
     }
 	
-    public String createTestCase(TestCaseBean testcase){
+    public TestCaseBean createTestCase(TestCaseBean testcase){
     	String string =DataUtils.getJSONTestCase(testcase);
     	System.out.println(string);
-    	return createTestCase(string);
+    	TestCaseBean bean = new TestCaseBean();
+    	String response =createTestCase(string);
+    	if(ResponseUtils.IsResponseOK(response)){
+    	 Integer id =ResponseUtils.getID(response);
+			bean.setId(id);
+    	} 
+    	return bean;
     }
 	@Override
 	protected  String setRestUrl() {
