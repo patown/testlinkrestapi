@@ -79,7 +79,19 @@ public final class BeanUtils {
     	.setColor(rspBean.getColor());
     	return tpBean;
     }
-    	
+    /**
+     * @param  ArrayList<TestProjectBean>,ArrayList<TestProjectBean>
+     * @return TestProjectBean.
+     */	
+    public static final TestProjectBean getDeltaTestProject(ArrayList<TestProjectBean> before, ArrayList<TestProjectBean> after){
+		TestProjectBean bean = new TestProjectBean();
+		int detla=after.size()-before.size();
+		if(detla==1){
+			bean=after.get(after.size()-1);
+		}
+		return bean;
+	}
+    
     /**
      * @param  TestProjectRspBean
      * @return TestProjectBean.

@@ -231,5 +231,8 @@ public final class DataUtils {
     	return string+"_"+System.currentTimeMillis();
     }
 
-
+    public static String getRandomShort(){
+    	String string= ""+System.currentTimeMillis();
+    	return string.substring(10, 13);
+    }
 }

@@ -15,6 +15,7 @@ import com.testlinkrestapi.restclient.Response;
 import com.testlinkrestapi.restclient.RestClient;
 import com.testlinkrestapi.service.TestPlanService;
 import com.testlinkrestapi.service.TestProjectService;
+import com.testlinkrestapi.util.DataUtils;
 
 public class CreateTestProject {
 
@@ -34,20 +35,14 @@ public class CreateTestProject {
     	options.setInventoryEnabled(1);
     	options.setTestPriorityEnabled(1);
     	options.setTestPriorityEnabled(1);
-	  	project.setName("tp220").setPrefix("220").setColor("iamcolor").setNotes("iamnote");
+	  	project.setName(DataUtils.getRandom("tp")).setPrefix(DataUtils.getRandomShort()).setColor("iamcolor").setNotes("iamnote");
     	project.setActive(0).setIs_public(1).setOptions(options);
     }
 
 	@Test
 	public void TestCreateTestProject(){
-    	String result =tpService.createTestProject(project);
-    	Response response= new Response(result);
-    	System.out.println(result);
-    	Assert.assertTrue(response.IsResponseOK());
-    	result =tpService.createTestProject(project);
-    	System.out.println(result);
-    	response= new Response(result);
-    	Assert.assertEquals("ko", response.getStatus());
+    	TestProjectBean result =tpService.createTestProject(project);
+    	System.out.println("id='"+result.getId()+"' name='"+result.getName()+"'");
 	}
 
 }

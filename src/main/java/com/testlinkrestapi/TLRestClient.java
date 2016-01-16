@@ -76,9 +76,9 @@ public class TLRestClient implements ITestLink{
     /* XX Test Project operations XX */
 
 	@Override
-	public TestProjectBean createTestProject(TestProjectBean bean) {
+	public TestProjectBean createTestProject(TestProjectBean project) {
 		// TODO Auto-generated method stub
-		return null;
+		return testprojectService.createTestProject(project);
 	}
 
 	@Override
@@ -111,7 +111,7 @@ public class TLRestClient implements ITestLink{
 	@Override
 	public ArrayList<TestPlanBean> getTestPlansInTestProject(Integer projectID) {
 		// TODO Auto-generated method stub
-		return null;
+		return testprojectService.getTestPlansInTestProject(projectID);
 	}
 
 

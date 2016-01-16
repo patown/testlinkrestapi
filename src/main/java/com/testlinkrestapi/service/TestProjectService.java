@@ -54,11 +54,23 @@ public class TestProjectService extends BaseService {
 
     /*
      * @param TestProjectBean 
-     * @return result
+     * @return TestProjectBean
+     * @Bug RESTAPI-POST-CreateTestProject- no "id" in in response message
+     * https://github.com/patown/testlinkrestapi/issues/4
      */
-    public String createTestProject(TestProjectBean project){
+    public TestProjectBean createTestProject(TestProjectBean project){
     	String string =DataUtils.getJSONTestProject(project);
-	  	return createTestProject(string);
+    	
+		ArrayList<TestProjectBean> before = getTestProjectList();
+		TestProjectBean bean = new TestProjectBean();
+    	String response=createTestProject(string);
+    	if(ResponseUtils.IsResponseOK(response)){
+    	//id =ResponseUtils.getID(response);
+			ArrayList<TestProjectBean> after = getTestProjectList();
+			bean=BeanUtils.getDeltaTestProject(before,after);
+    	} 
+       //	return getTestProjectByID(id); 	
+    	return bean;
     }
     /*
      * @param testproject String
@@ -149,6 +161,7 @@ public class TestProjectService extends BaseService {
     	return null;
 	}
 	
+
 	
 	@Override
 	protected String setRestUrl() {
